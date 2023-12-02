@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
+
 	"github.com/jdiamond95/aoc2023/days"
 )
 
@@ -32,11 +34,16 @@ func main() {
 
     for _, val := range challenges {
         fmt.Printf("🎅 Day %02d 🎅\n", val)
+
+        start := time.Now()
         switch val {
         case 1:
             days.Day1("./days/day01.txt")
         default:
             fmt.Println("Not implemented")
         }
+
+        elapsed := time.Since(start)
+        fmt.Println("\nTime taken: " + elapsed.String())
     }
 }
