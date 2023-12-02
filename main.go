@@ -27,7 +27,7 @@ func main() {
 
     // All days
     } else {
-        for i := 1; i < 2; i++ {
+        for i := 1; i < 3; i++ {
             challenges = append(challenges, i)
         }
     }
@@ -39,11 +39,13 @@ func main() {
         switch val {
         case 1:
             days.Day1("./days/day01.txt")
+        case 2:
+            days.Day2("./days/day02.txt")
         default:
             fmt.Println("Not implemented")
         }
 
         elapsed := time.Since(start)
-        fmt.Println("\nTime taken: " + elapsed.String())
+        fmt.Printf("\nTime taken: %s\n\n", elapsed.String())
     }
 }
