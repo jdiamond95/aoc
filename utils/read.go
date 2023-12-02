@@ -7,7 +7,6 @@ import (
 )
 
 func ReadLines(p string) []string {
-    p = "./days/" + p
     f, err := os.Open(p)
     if err != nil {
         fmt.Println(err)

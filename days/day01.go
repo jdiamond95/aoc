@@ -9,11 +9,16 @@ import (
 	"github.com/jdiamond95/aoc2023/utils"
 )
 
-func Day1(p string) {
+func Day1(p string) (int, int) {
     lines := utils.ReadLines(p)
 
-    fmt.Printf("Part a: %d\n", calibrate(lines))
-    fmt.Printf("Part b: %d\n", calibrate(wordsToDigits(lines)))
+    a := calibrate(lines)
+    b := calibrate(wordsToDigits(lines))
+
+    fmt.Printf("Part a: %d\n", a)
+    fmt.Printf("Part b: %d\n", b)
+
+    return a, b
 }
 
 func calibrate(lines []string) int {

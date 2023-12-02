@@ -34,7 +34,7 @@ func main() {
         fmt.Printf("🎅 Day %02d 🎅\n", val)
         switch val {
         case 1:
-            days.Day1("day01.txt")
+            days.Day1("./days/day01.txt")
         default:
             fmt.Println("Not implemented")
         }
