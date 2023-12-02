@@ -3,7 +3,11 @@ First time trying Advent of Code actually during December. Also using this as an
 
 ## Run 
 **Individual Days**
-`go run . <day>`
+```
+go run . <day>
+```
 
 **All Days**
-`go run .`
+```
+go run .
+```
