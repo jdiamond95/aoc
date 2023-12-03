@@ -27,7 +27,7 @@ func main() {
 
     // All days
     } else {
-        for i := 1; i < 3; i++ {
+        for i := 1; i < 4; i++ {
             challenges = append(challenges, i)
         }
     }
@@ -41,6 +41,8 @@ func main() {
             days.Day1("./days/day01.txt")
         case 2:
             days.Day2("./days/day02.txt")
+        case 3:
+            days.Day3("./days/day03.txt")
         default:
             fmt.Println("Not implemented")
         }
