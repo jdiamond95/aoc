@@ -21,20 +21,54 @@ func Day5(p string) (int, int) {
 }
 
 func day5PartB(input string) int {
-    return 5
+    almanac := parseAlmanac(input)
+    seedList := strings.Split(almanac[0], " ")
+
+    seedsArr := make([]int, 0)
+    for i := 0; i < len(seedList); i += 2 {
+        seedStart, _ := strconv.Atoi(seedList[i])
+        seedLen, _ := strconv.Atoi(seedList[i + 1])
+        for j := seedStart; j < (seedStart + seedLen); j++ {
+            seedsArr = append(seedsArr, j)
+        }
+    }
+
+    // Dedup seedsArr
+    lowest := calculateLowestSeed(seedsArr, almanac)
+    return lowest
 }
 
 func day5PartA(input string) int {
     almanac := parseAlmanac(input)
-
-    lowest := -1
     seeds := strings.Split(almanac[0], " ")
 
+    seedsIntArr := make([]int, 0)
+    for _, val := range seeds {
+        num, _:= strconv.Atoi(val)
+        seedsIntArr = append(seedsIntArr, num)
+    }
+    lowest := calculateLowestSeed(seedsIntArr, almanac)
+
+    return lowest
+}
+
+
+func parseAlmanac(input string) []string {
+    almanac := make([]string, 0)
+
+    str := strings.Split(input, "\n\n")
+    for _, val := range str {
+        nums := strings.Split(val, ":")[1]
+        nums = strings.TrimSpace(nums)
+        almanac = append(almanac, nums)
+    }
+    return almanac
+}
+
+func calculateLowestSeed(seeds []int, almanac []string) int {
+    lowest := -1
     for _, seed := range seeds {
-        currVal, err := strconv.Atoi(seed)
-        if err != nil {
-            fmt.Println(err)
-        }
+        currVal := seed
 
         almanac:
         for i := 1; i < len(almanac); i++ {
@@ -56,17 +90,4 @@ func day5PartA(input string) int {
         }
     }
     return lowest
-}
-
-
-func parseAlmanac(input string) []string {
-    almanac := make([]string, 0)
-
-    str := strings.Split(input, "\n\n")
-    for _, val := range str {
-        nums := strings.Split(val, ":")[1]
-        nums = strings.TrimSpace(nums)
-        almanac = append(almanac, nums)
-    }
-    return almanac
 }
