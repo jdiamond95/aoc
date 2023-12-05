@@ -22,3 +22,14 @@ func ReadLines(p string) []string {
 
     return lines
 }
+
+
+func ReadBlock(p string) string {
+    b, err := os.ReadFile(p)
+    if err != nil {
+        fmt.Println(err)
+    }
+
+    text := string(b)
+    return text
+}
