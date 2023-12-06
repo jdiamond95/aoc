@@ -53,3 +53,16 @@ func ReadIntArray(s string) []int {
 
     return intArr
 }
+
+func ReadIntKerning (s string) int {
+    // Assumes theres a colon seperating line title and data
+    numStr := strings.Split(s, ":")[1]
+    numStr = strings.Replace(numStr, " ", "", -1)
+    i, err := strconv.Atoi(numStr)
+
+    if err != nil {
+        fmt.Println(err)
+    }
+    
+    return i
+}

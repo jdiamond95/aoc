@@ -2,8 +2,6 @@ package days
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
 
 	"github.com/jdiamond95/aoc2023/utils"
 )
@@ -21,15 +19,9 @@ func Day6(p string) (int, int) {
 }
 
 func day6PartB(lines []string) int {
-    times := strings.Split(lines[0], ":")[1]
-    times = strings.Replace(times, " ", "", -1)
-    timesInt, _ := strconv.Atoi(times)
-
-    distances := strings.Split(lines[1], ":")[1]
-    distances = strings.Replace(distances, " ", "", -1)
-    distancesInt, _ := strconv.Atoi(distances)
-
-    raceSum := calculateRecordBreaks(timesInt, distancesInt)
+    time := utils.ReadIntKerning(lines[0])
+    distance := utils.ReadIntKerning(lines[1])
+    raceSum := calculateRecordBreaks(time, distance)
     return raceSum
 }
 
