@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func ReadLines(p string) []string {
@@ -32,4 +34,22 @@ func ReadBlock(p string) string {
 
     text := string(b)
     return text
+}
+
+func ReadIntArray(s string) []int {
+    // Assume theres something colon splitting our line
+    s = strings.Split(s, ":")[1]
+    strArr := strings.Fields(s)
+
+    intArr := make([]int, len(strArr))
+    for i := range strArr {
+        num, err := strconv.Atoi(strArr[i])
+        if err != nil {
+            fmt.Println(err)
+        }
+        
+        intArr[i] = num
+    }
+
+    return intArr
 }
