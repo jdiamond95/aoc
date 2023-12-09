@@ -16,19 +16,20 @@ type hand struct {
 	valMap map[rune]int
 }
 
-type orderedHands []hand
+// TODO - make this not disgusting
+type part1Order []hand
 
-func (h orderedHands) Len() int {
+func (h part1Order) Len() int {
 	return len(h)
 }
 
-func (h orderedHands) Less(i, j int) bool {
+func (h part1Order) Less(i, j int) bool {
 	iScore, jScore := scoreHand(h[i]), scoreHand(h[j])
 	if iScore != jScore {
 		return iScore < jScore
 	}
 
-	iCardVals, jCardVals := cardsToValues(h[i].cards), cardsToValues(h[j].cards)
+	iCardVals, jCardVals := cardsToValues(h[i].cards, false), cardsToValues(h[j].cards, false)
 	for k := range iCardVals {
 		if iCardVals[k] != jCardVals[k] {
 			return iCardVals[k] < jCardVals[k]
@@ -38,7 +39,33 @@ func (h orderedHands) Less(i, j int) bool {
 	return false
 }
 
-func (h orderedHands) Swap(i, j int) {
+func (h part1Order) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+type part2Order []hand
+
+func (h part2Order) Len() int {
+	return len(h)
+}
+
+func (h part2Order) Less(i, j int) bool {
+	iScore, jScore := substitute(h[i]), substitute(h[j])
+	if iScore != jScore {
+		return iScore < jScore
+	}
+
+	iCardVals, jCardVals := cardsToValues(h[i].cards, true), cardsToValues(h[j].cards, true)
+	for k := range iCardVals {
+		if iCardVals[k] != jCardVals[k] {
+			return iCardVals[k] < jCardVals[k]
+		}
+	}
+
+	return false
+}
+
+func (h part2Order) Swap(i, j int) {
 	h[i], h[j] = h[j], h[i]
 }
 
@@ -63,12 +90,24 @@ func Day7(p string) (int, int) {
 }
 
 func day7PartB(lines []string) int {
-	return 6
+	hands := parseCamelCards(lines)
+	sort.Sort(part2Order(hands))
+
+	sum := 0
+	for i, hand := range hands {
+		score := (i + 1) * hand.score
+		if sum == 0 {
+			sum = score
+		} else {
+			sum += score
+		}
+	}
+	return sum
 }
 
 func day7PartA(lines []string) int {
 	hands := parseCamelCards(lines)
-	sort.Sort(orderedHands(hands))
+	sort.Sort(part1Order(hands))
 
 	sum := 0
 	for i, hand := range hands {
@@ -81,6 +120,36 @@ func day7PartA(lines []string) int {
 	}
 
 	return sum
+}
+
+func substitute(cards hand) int {
+	maxScore := 0
+	for card, count := range cards.valMap {
+		if card == 'J' && count == 5 {
+			return 7
+		} else if card == 'J' {
+			continue
+		} else {
+			temp := make([]rune, 0)
+			for i := range cards.cards {
+				if cards.cards[i] == 'J' {
+					temp = append(temp, card)
+				} else {
+					temp = append(temp, cards.cards[i])
+				}
+			}
+			tryHand := hand{
+				temp,
+				0,
+				handToType(temp),
+			}
+			score := scoreHand(tryHand)
+			if score > maxScore {
+				maxScore = score
+			}
+		}
+	}
+	return maxScore
 }
 
 func parseCamelCards(lines []string) []hand {
@@ -114,13 +183,17 @@ func handToType(cards []rune) map[rune]int {
 	return typeMap
 }
 
-func cardsToValues(cards []rune) []int {
+func cardsToValues(cards []rune, part2 bool) []int {
 	cardVals := make([]int, 5)
 	for i, card := range cards {
 		str := string(card)
 		num, err := strconv.Atoi(str)
 		if err != nil {
-			num = cardMapping[card]
+			if part2 && card == 'J' {
+				num = 0
+			} else {
+				num = cardMapping[card]
+			}
 		}
 		cardVals[i] = num
 	}
