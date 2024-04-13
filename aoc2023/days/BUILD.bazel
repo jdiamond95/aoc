@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "days",
+    srcs = [
+        "day01.go",
+        "day02.go",
+        "day04.go",
+        "day05.go",
+        "day06.go",
+        "day07.go",
+        "day08.go",
+    ],
+    data = glob(["inputs/*.txt"]),
+    importpath = "github.com/jdiamond95/aoc2023/days",
+    visibility = ["//visibility:public"],
+    deps = ["//aoc2023/utils"],
+)
+
+go_test(
+    name = "days_test",
+    srcs = [
+        "day01_test.go",
+        "day02_test.go",
+        "day04_test.go",
+        "day05_test.go",
+    ],
+    embed = [":days"],
+)

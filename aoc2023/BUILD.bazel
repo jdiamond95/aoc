@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "aoc2023_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/jdiamond95/aoc2023",
+    visibility = ["//visibility:private"],
+    deps = ["//aoc2023/days"],
+)
+
+go_binary(
+    name = "aoc2023",
+    embed = [":aoc2023_lib"],
+    visibility = ["//visibility:public"],
+)

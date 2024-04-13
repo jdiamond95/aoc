@@ -1,2 +1,4 @@
-aoc2023
 .idea/
+.ijwb/
+.DS_Store
+bazel-*/
