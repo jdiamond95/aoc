@@ -1,4 +1,4 @@
 .idea/
 .ijwb/
 .DS_Store
-bazel-*/
+/bazel-*
