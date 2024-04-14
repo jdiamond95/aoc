@@ -1,4 +1,4 @@
-package days
+package internal
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jdiamond95/aoc2023/utils"
+	utils "github.com/jdiamond95/2023/pkg"
 )
 
 type hand struct {

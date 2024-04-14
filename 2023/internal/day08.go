@@ -1,9 +1,10 @@
-package days
+package internal
 
 import (
 	"fmt"
-	"github.com/jdiamond95/aoc2023/utils"
 	"regexp"
+
+	utils "github.com/jdiamond95/2023/pkg"
 )
 
 type node struct {

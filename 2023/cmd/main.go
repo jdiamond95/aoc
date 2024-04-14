@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jdiamond95/aoc2023/days"
+	days "github.com/jdiamond95/2023/internal"
 )
 
 func main() {
@@ -38,21 +38,26 @@ func main() {
 		start := time.Now()
 		switch val {
 		case 1:
-			days.Day1("./days/day01.txt")
+			path, err := os.Getwd()
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(path)
+			days.Day1("../internal/inputs/day01.txt")
 		case 2:
-			days.Day2("./days/day02.txt")
+			days.Day2("../internal/inputs/day02.txt")
 		// case 3:
-		// 	days.Day3("./days/day03.txt")
+		// 	days.Day3("../internal/inputs/day03.txt")
 		case 4:
-			days.Day4("./days/day04.txt")
+			days.Day4("../internal/inputs/day04.txt")
 		case 5:
-			days.Day5("./days/day05.txt")
+			days.Day5("../internal/inputs/day05.txt")
 		case 6:
-			days.Day6("./days/day06.txt")
+			days.Day6("../internal/inputs/day06.txt")
 		case 7:
-			days.Day7("./days/day07.txt")
+			days.Day7("../internal/inputs/day07.txt")
 		case 8:
-			days.Day8("./days/day08.txt")
+			days.Day8("../internal/inputs/day08.txt")
 		default:
 			fmt.Println("Not implemented")
 		}
