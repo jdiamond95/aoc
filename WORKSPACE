@@ -9,6 +9,12 @@ http_archive(
     ],
 )
 
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+
+go_rules_dependencies()
+
+go_register_toolchains(version = "1.20.5")
+
 http_archive(
     name = "bazel_gazelle",
     sha256 = "b7387f72efb59f876e4daae42f1d3912d0d45563eac7cb23d1de0b094ab588cf",
@@ -18,17 +24,6 @@ http_archive(
     ],
 )
 
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
-
-############################################################
-# Define your own dependencies here using go_repository.
-# Else, dependencies declared by rules_go/gazelle will be used.
-# The first declaration of an external repository "wins".
-############################################################
-
-go_rules_dependencies()
-
-go_register_toolchains(version = "1.20.5")
 
 gazelle_dependencies()

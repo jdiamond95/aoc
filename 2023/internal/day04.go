@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	utils "github.com/jdiamond95/2023/pkg"
+	utils "github.com/jdiamond95/aoc/2023/pkg"
 )
 
 func Day4(p string) (int, int) {

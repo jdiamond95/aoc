@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"regexp"
 
-	utils "github.com/jdiamond95/2023/pkg"
+	utils "github.com/jdiamond95/aoc/2023/pkg"
 )
 
 type node struct {

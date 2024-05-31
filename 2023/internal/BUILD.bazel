@@ -2,17 +2,10 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
 go_library(
     name = "internal",
-    srcs = [
-        "day01.go",
-        "day02.go",
-        "day04.go",
-        "day05.go",
-        "day06.go",
-        "day07.go",
-        "day08.go",
-    ],
-    importpath = "github.com/jdiamond95/2023/2023/internal",
+    srcs = glob(["day*.go"])
+    importpath = "github.com/jdiamond95/aoc/2023/internal",
     visibility = ["//2023:__subpackages__"],
+    deps = ["//2023/pkg"],
 )
 
 go_test(
@@ -23,5 +16,5 @@ go_test(
         "day04_test.go",
         "day05_test.go",
     ],
-    embed = [":internal"],
+    data = glob(["inputs/*"]),
 )

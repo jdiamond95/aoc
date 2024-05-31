@@ -1,12 +1,16 @@
 package internal
 
-import "testing"
+import (
+	"testing"
+
+	days "github.com/jdiamond95/aoc/2023/internal"
+)
 
 func TestDay2(t *testing.T) {
-	f := "day02.txt"
+	f := "./inputs/day02.txt"
 	targetA := 2207
 	targetB := 62241
-	resultA, resultB := Day2(f)
+	resultA, resultB := days.Day2(f)
 
 	if targetA != resultA {
 		t.Fatalf("Day 1 Part A failed (%s): wanted %d, got %d", f, resultA, targetA)
