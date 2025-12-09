@@ -27,6 +27,10 @@ func main() {
 		lines := pkg.ReadLines("inputs/01.txt")
 		internal.Day1Part1(lines)
 		internal.Day1Part2(lines)
+	case "2":
+		lines := pkg.ReadLines("inputs/02.txt")
+		// internal.Day2Part01(lines[0])
+		internal.Day2Part02(lines[0])
 	default:
 		fmt.Println("Invalid day")
 	}
